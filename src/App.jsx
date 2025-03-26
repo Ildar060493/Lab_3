@@ -1,13 +1,17 @@
-import React from 'react';
+import React from "react";
+import { DataProvider } from "./DataContext";
+import NoteList from "./components/NoteList";
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <h1>Привет, мир!</h1>
-      <p>Это мой to-do лист на React</p>
-    </div>
+    <DataProvider>
+      <div className="container">
+        <h1>To-Do List</h1>
+        <NoteList />
+      </div>
+    </DataProvider>
   );
-};
+}
 
 export default App;
 
