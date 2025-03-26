@@ -2,6 +2,7 @@
 
 import React, { useState, useContext } from "react";
 import { DataContext } from "../DataContext";
+import { v4 as uuidv4 } from "uuid";
 import DateInput from "./DateInput";
 
 function NoteAdd() {
@@ -11,12 +12,12 @@ function NoteAdd() {
   const [startTime, setStartTime] = useState(new Date().toISOString().slice(11, 16));
   const [endTime, setEndTime] = useState(new Date().toISOString().slice(11, 16));
 
-  // Функция для добавления новой задачи
   const addTask = () => {
     if (!newNote.trim()) return; // Если поле пустое, не добавляем задачу
     setTasks([
       ...tasks,
       {
+        id: uuidv4(), // Генерация уникального ID
         content: newNote,
         date: { day: date, start: startTime, end: endTime },
         important: false,
@@ -24,14 +25,6 @@ function NoteAdd() {
       }
     ]);
     setNewNote(""); // Очищаем поле ввода после добавления задачи
-  };
-
-  // Функция для очистки поля ввода
-  const clearInput = () => {
-    setNewNote("");
-    setDate(new Date().toISOString().split("T")[0]);
-    setStartTime(new Date().toISOString().slice(11, 16));
-    setEndTime(new Date().toISOString().slice(11, 16));
   };
 
   return (
@@ -55,7 +48,6 @@ function NoteAdd() {
       />
       <div className="note-add__actions">
         <button onClick={addTask}>Добавить</button>
-        <button onClick={clearInput}>Очистить</button>
       </div>
     </div>
   );
