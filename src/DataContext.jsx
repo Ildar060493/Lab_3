@@ -24,4 +24,3 @@ export function DataProvider({ children }) {
     </DataContext.Provider>
   );
 }
-
