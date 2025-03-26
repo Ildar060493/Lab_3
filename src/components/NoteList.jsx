@@ -1,21 +1,22 @@
-// src/components/NoteList.jsx
+// src/App.jsx
 
-import React, { useContext } from "react";
-import { DataContext } from "../DataContext";
-import NoteCard from "./NoteCard";
+import React from "react";
+import { DataProvider } from "./DataContext";
+import NoteAdd from "./components/NoteAdd";
+import NoteList from "./components/NoteList";
 
-function NoteList() {
-  const { tasks } = useContext(DataContext);
-
+function App() {
   return (
-    <div className="note-list">
-      {tasks.map((note, index) => (
-        <NoteCard key={index} note={note} index={index} />
-      ))}
-    </div>
+    <DataProvider>
+      <div className="container">
+        <NoteAdd />
+        <NoteList />
+      </div>
+    </DataProvider>
   );
 }
 
-export default NoteList;
+export default App;
+
 
 
